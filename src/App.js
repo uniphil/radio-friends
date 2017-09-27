@@ -76,7 +76,7 @@ class App extends Component {
         const params = new URLSearchParams();
         params.set('client_id', SPOTIFY_ID);
         params.set('response_type', 'token');
-        params.set('redirect_uri', 'http://localhost:3000/ok');
+        params.set('redirect_uri', `${window.location}ok`);
         params.set('state', localStorage.getItem('state'));
         params.set('scope', SPOTIFY_SCOPES.join(' '));
         const authUrl = new URL(`${SPOTIFY_AUTH}?${params}`);
