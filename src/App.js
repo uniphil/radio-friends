@@ -31,13 +31,10 @@ class App extends Component {
       if (params.get('state') === localStorage.getItem('state')) {
         const access = params.get('access_token');
         authState = authStates.AUTH_OK(access);
-        localStorage.setItem('access', access);
         firebase.auth().signInAnonymously();
       } else {
         authState = authStates.AUTH_ERR('Bad auth flow: states did not match.');
       }
-    } else if ('access' in localStorage) {
-      authState = authStates.AUTH_OK(localStorage.getItem('access'));
     } else {
       authState = authStates.ANON();
       const state = window.crypto.getRandomValues(new Int16Array(4)).join('');
@@ -47,7 +44,7 @@ class App extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ user });
-        const access = localStorage.getItem('access');
+        const { authState: { access } } = this.state;
         fetch('https://api.spotify.com/v1/me', {
           headers: { Authorization: `Bearer ${access}` },
         })

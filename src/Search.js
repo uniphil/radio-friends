@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from './firebase';
 
 export default class Search extends Component {
   constructor(props) {
@@ -45,15 +46,15 @@ export default class Search extends Component {
       });
   };
 
-  queue = uri => {
-    const { device, access } = this.props;
-    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device.id}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `Bearer ${access}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ uris: [uri] }),
+  queue = track => {
+    const { user } = this.props;
+    firebase.database().ref('queue').push({
+      uri: track.uri,
+      name: track.name,
+      artist: track.artists.map(a => a.name).join(', '),
+      duration: track.duration_ms,
+      queuer: user.displayName,
+      queued: +new Date(),
     });
   }
 
@@ -80,8 +81,11 @@ export default class Search extends Component {
           <ul>
             {searchResults.map(track => (
               <li key={track.id}>
-                <h4>{track.name} <small>({track.artists.map(artist => artist.name).join(', ')})</small></h4>
-                <button onClick={() => this.queue(track.uri)}>queue</button>
+                <h4>
+                  {track.name}{' '}
+                  <small>({track.artists.map(artist => artist.name).join(', ')})</small>
+                  <button onClick={() => this.queue(track)}>queue</button>
+                </h4>
               </li>
             ))}
           </ul>

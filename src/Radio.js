@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Chat from './Chat';
 import Search from './Search';
+import PlayControls from './PlayControls';
 
 export default class Radio extends Component {
   render() {
@@ -18,7 +19,7 @@ export default class Radio extends Component {
             <Search access={access} device={device} user={user} />
           </div>
           <div>
-            <p>queue/player here</p>
+            <PlayControls access={access} device={device} user={user} />
           </div>
         </div>
         <div style={{ flex: 1 }}>
