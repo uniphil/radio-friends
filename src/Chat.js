@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from './firebase';
+import './Chat.css';
 
 
 export default class Chat extends Component {
@@ -9,7 +10,7 @@ export default class Chat extends Component {
       message: '',
       messages: null,
     };
-    firebase.database().ref('messages').limitToLast(4).on('value', v => {
+    firebase.database().ref('messages').limitToLast(14).on('value', v => {
       this.setState({ messages: v.val() });
     });
   }
@@ -30,8 +31,8 @@ export default class Chat extends Component {
   render() {
     const { message, messages } = this.state;
     return (
-      <div>
-        <div>
+      <div className="Chat">
+        <div className="Chat-messages">
           {messages
             ? Object.keys(messages).map(id => (
                 <p key={id}>
@@ -41,9 +42,14 @@ export default class Chat extends Component {
               ))
             : <p>loading messages...</p>}
         </div>
-        <form onSubmit={this.post}>
-          <textarea onChange={this.handleTyping} value={message} />
-          <p><button type="submit">send</button></p>
+        <form className="Chat-form" onSubmit={this.post}>
+          <textarea
+            onChange={this.handleTyping}
+            value={message}
+          />
+          <button type="submit">
+            send
+          </button>
         </form>
       </div>
     );

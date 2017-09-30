@@ -1,0 +1,28 @@
+.Radio {
+    display: flex;
+    overflow: auto;
+    height: 100vh;
+    width: 100%;
+}
+
+.Radio-music-side {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+}
+
+.Radio-search {
+    flex: 0 0 50%;
+    overflow-y: auto;
+}
+
+.Radio-player {
+    flex: 0 0 50%;
+    overflow-y: auto;
+}
+
+.Radio-chat-side {
+    flex: 1;
+}
+

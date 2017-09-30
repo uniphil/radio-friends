@@ -10,6 +10,7 @@
     align-items: center;
     background: var(--theme-color);
     box-sizing: border-box;
+    color: var(--dark);
     display: flex;
     height: 100vh;
     padding: 5vw;
@@ -35,7 +36,7 @@
 
 
 body {
-  color: var(--dark);
+  color: var(--darker);
   margin: 0;
   padding: 0;
   font-family: sans-serif;

@@ -1,0 +1,30 @@
+.Chat {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: flex-end;
+}
+
+.Chat-messages {
+    overflow-y: auto;
+}
+
+.Chat-form {
+    display: flex;
+    flex: 0 0 4em;
+}
+
+.Chat-form textarea {
+    box-sizing: border-box;
+    display: block;
+    flex: 1;
+    font: inherit;
+    height: 100%;
+    margin: 0;
+    padding: 0.5em;
+}
+
+.Chat-form button {
+    flex: 0 0 5em;
+    font: inherit;
+}
