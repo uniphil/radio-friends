@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import choose from './choose';
 import firebase from './firebase';
+import Hello from './Hello';
 import GetReady from './GetReady';
 
 import logo from './logo.svg';
@@ -78,7 +79,7 @@ class App extends Component {
         params.set('scope', SPOTIFY_SCOPES.join(' '));
         const authUrl = new URL(`${SPOTIFY_AUTH}?${params}`);
         return (
-          <a href={authUrl}>connect to spotify</a>
+          <Hello authUrl={authUrl} />
         );
       },
       AUTH_ERR: () => (
