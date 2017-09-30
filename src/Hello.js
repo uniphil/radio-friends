@@ -7,7 +7,7 @@ const Hello = ({ authUrl }) => (
       <h1 className="Hello-title">Radio Friends</h1>
       <p>Listen to music together from anywhere</p>
       <p className="Hello-signin">
-        <a className="Hello-signin-link" href={authUrl}>
+        <a className="Hello-signin-link button" href={authUrl}>
           Sign in with Spotify
         </a>
       </p>
