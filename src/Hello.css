@@ -1,12 +1,4 @@
 .Hello {
-    align-items: center;
-    background: #f89;
-    box-sizing: border-box;
-    color: hsla(0, 0%, 0%, 0.5);
-    display: flex;
-    height: 100vh;
-    padding: 5vw;
-    width: 100%;
 }
 
 .Hello-wrap {
@@ -14,7 +6,7 @@
 }
 
 .Hello-title {
-    color: hsla(0, 0%, 100%, 0.667);
+    color: var(--bright);
     font-size: 20vw;
     margin: 0;
 }
@@ -27,20 +19,4 @@
 
 .Hello-signin {
     /*text-align: center;*/
-}
-
-.Hello-signin-link {
-    background: hsla(0, 0%, 100%, 0.5);
-    border: 3px solid hsla(0, 0%, 0%, 0.5);
-    border-width: 0 0 5px;
-    color: inherit;
-    display: inline-block;
-    padding: 1em 1em calc(1em - 5px);
-    text-decoration: none;
-}
-
-.Hello-signin-link:hover {
-    background: hsla(0, 0%, 100%, 0.667);
-    color: hsla(0, 0%, 0%, 0.667);
-    border-color: hsla(0, 0%, 0%, 0.667);
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Hello.css';
 
 const Hello = ({ authUrl }) => (
-  <div className="Hello">
+  <div className="Hello splash">
     <div className="Hello-wrap">
       <h1 className="Hello-title">Radio Friends</h1>
       <p>Listen to music together from anywhere</p>

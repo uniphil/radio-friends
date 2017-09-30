@@ -1,4 +1,41 @@
+:root {
+    --theme-color: #f89;
+    --light: hsla(0, 0%, 100%, 0.5);
+    --bright: hsla(0, 0%, 100%, 0.667);
+    --dark: hsla(0, 0%, 0%, 0.5);
+    --darker: hsla(0, 0%, 0%, 0.667);
+}
+
+.splash {
+    align-items: center;
+    background: var(--theme-color);
+    box-sizing: border-box;
+    display: flex;
+    height: 100vh;
+    padding: 5vw;
+    width: 100%;
+}
+
+.button {
+    background: var(--light);
+    border: 3px solid var(--dark);
+    border-width: 0 0 5px;
+    color: inherit;
+    display: inline-block;
+    font: inherit;
+    padding: 1em 1em calc(1em - 5px);
+    text-decoration: none;
+}
+
+.button:hover {
+    background: var(--bright);
+    color: var(--darker);
+    border-color: var(--darker);
+}
+
+
 body {
+  color: var(--dark);
   margin: 0;
   padding: 0;
   font-family: sans-serif;

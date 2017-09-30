@@ -87,7 +87,11 @@ class App extends Component {
       ),
       AUTH_OK: ({ access }) => user
         ? <GetReady access={access} user={user} logout={this.logout} />
-        : <p>Signing in...</p>,
+        : (
+          <div className="App-signing-in splash">
+            <p>Signing in...</p>
+          </div>
+        ),
     });
   }
 }
