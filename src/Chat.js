@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from './firebase';
+import Message from './Message';
 import './Chat.css';
 
 
@@ -35,19 +36,17 @@ export default class Chat extends Component {
         <div className="Chat-messages">
           {messages
             ? Object.keys(messages).map(id => (
-                <p key={id}>
-                  {messages[id].message}{' '}
-                  <small><em>({messages[id].name})</em></small>
-                </p>
+                <Message key={id} message={messages[id]} />
               ))
             : <p>loading messages...</p>}
         </div>
         <form className="Chat-form" onSubmit={this.post}>
           <textarea
+            className="input"
             onChange={this.handleTyping}
             value={message}
           />
-          <button type="submit">
+          <button className="button" type="submit">
             send
           </button>
         </form>

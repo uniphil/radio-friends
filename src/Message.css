@@ -1,0 +1,22 @@
+.Message {
+    background: hsl(var(--theme-hue), var(--theme-sat), 95%);
+    border-radius: 0.5em;
+    margin: 0.5em;
+    min-width: 10em;
+    padding: 0.4em 0.4em 0.25em;
+    width: fit-content;
+}
+
+.Message p {
+    margin: 0;
+}
+
+p.Message-content {
+    margin-bottom: 0.3em;
+}
+
+.Message-author {
+    color: var(--dark);
+    font-size: 0.8em;
+    text-align: right;
+}

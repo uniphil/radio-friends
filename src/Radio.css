@@ -5,9 +5,20 @@
     width: 100%;
 }
 
+.Radio .button {
+    box-sizing: border-box;
+    background: var(--theme-color);
+}
+
+.Radio .input {
+    box-sizing: border-box;
+    border: 1px solid var(--theme-color);
+    font: inherit;
+}
+
 .Radio-music-side {
     display: flex;
-    flex: 1;
+    flex: 1 1 100%;
     flex-direction: column;
     height: 100%;
 }
@@ -23,6 +34,6 @@
 }
 
 .Radio-chat-side {
-    flex: 1;
+    flex: 0 0 18em;
 }
 

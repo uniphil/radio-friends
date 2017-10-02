@@ -1,5 +1,8 @@
 :root {
-    --theme-color: #f89;
+    --theme-hue: 351;
+    --theme-sat: 100%;
+    --theme-light: 77%;
+    --theme-color: hsl(var(--theme-hue), var(--theme-sat), var(--theme-light));
     --light: hsla(0, 0%, 100%, 0.5);
     --bright: hsla(0, 0%, 100%, 0.667);
     --dark: hsla(0, 0%, 0%, 0.5);

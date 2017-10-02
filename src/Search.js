@@ -67,6 +67,7 @@ export default class Search extends Component {
         <form onSubmit={this.search}>
           <p>
             <input
+              className="input"
               disabled={searching}
               onChange={this.handleSearchValueChange}
               placeholder="search"

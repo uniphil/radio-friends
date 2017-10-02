@@ -17,7 +17,7 @@ export default class Radio extends Component {
             <PlayControls access={access} device={device} user={user} />
           </div>
         </div>
-        <div className="Radio-chat-side" style={{ flex: 1 }}>
+        <div className="Radio-chat-side">
           <Chat user={user} />
         </div>
       </div>
