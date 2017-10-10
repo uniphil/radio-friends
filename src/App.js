@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import choose from './choose';
 import firebase from './firebase';
 import Hello from './Hello';
-import GetReady from './GetReady';
+import Radio from './Radio';
 
 import logo from './logo.svg';
 import './App.css';
@@ -86,7 +86,7 @@ class App extends Component {
         <p>authentication error sadface</p>
       ),
       AUTH_OK: ({ access }) => user
-        ? <GetReady access={access} user={user} logout={this.logout} />
+        ? <Radio access={access} user={user} />
         : (
           <div className="App-signing-in splash">
             <p>Signing in...</p>

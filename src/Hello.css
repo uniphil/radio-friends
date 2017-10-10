@@ -1,13 +1,17 @@
 .Hello {
+    display: flex;
+    justify-content: center;
 }
 
 .Hello-wrap {
+    padding: 1em;
+    margin-bottom: 8vh;
     width: min-content;
 }
 
 .Hello-title {
     color: var(--bright);
-    font-size: 20vw;
+    font-size: calc(3em + 4vw + 2vh);
     margin: 0;
 }
 
@@ -17,6 +21,6 @@
     text-align: right;
 }
 
-.Hello-signin {
-    /*text-align: center;*/
+.Hello p:last-child {
+    margin-bottom: 0;
 }

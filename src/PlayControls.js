@@ -23,7 +23,8 @@ export default class PlayControls extends Component {
 
   x = (uri, position) => {
     const { device, access } = this.props;
-    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device.id}`, {
+    const query = device ? `device_id=${device.id}` : ''
+    fetch(`https://api.spotify.com/v1/me/player/play?${query}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${access}`,
