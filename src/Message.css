@@ -1,7 +1,7 @@
 .Message {
     background: hsl(var(--theme-hue), var(--theme-sat), 95%);
     border-radius: 0.5em;
-    margin: 0.5em;
+    margin: 0.5em 0;
     min-width: 10em;
     padding: 0.4em 0.4em 0.25em;
     width: fit-content;

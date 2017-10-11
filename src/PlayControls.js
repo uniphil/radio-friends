@@ -14,6 +14,10 @@ export default class PlayControls extends Component {
     };
     firebase.database().ref('queue').on('value', v => {
       const fbQueue = v.val();
+      if (!fbQueue) {  // nothing has been queued ever, yet
+        this.setState({ loadingQueue: false });
+        return;
+      }
       const queue = Object.keys(fbQueue).map(id => ({ id, ...fbQueue[id] }));
       this.setState({
         loadingQueue: false,
