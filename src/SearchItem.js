@@ -20,7 +20,7 @@ export default class SearchItem extends Component {
   handleQueue = () => {
     const { onQueue, track } = this.props;
     this.setState({ queueStatus: 'queuing' }, () =>
-      this.props.onQueue(track).then(() =>
+      onQueue(track).then(() =>
         this.setState({ queueStatus: 'queued' })));
   };
 
