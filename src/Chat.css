@@ -1,8 +1,10 @@
 .Chat {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     height: 100vh;
     justify-content: flex-end;
+    padding: 0.5em;
 }
 
 .Chat-messages {

@@ -21,12 +21,12 @@ const CurrentlyPlaying = ({ muted, onToggleMute, track, next }) => (
     </div>
     {next ? (
       <p className="CurrentlyPlaying-next">
-        Up next from{' '}
+        Up next queued by{' '}
         <span className="CurrentlyPlaying-next-queuer">
           {`${next.queuer}: `}
         </span>
         <span className="CurrentlyPlaying-next-title">
-          {next.name}{' '}
+          {next.name}{' – '}
         </span>
         <span className="CurrentlyPlaying-next-artist">
           {next.artist}{' '}

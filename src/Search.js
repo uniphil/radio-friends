@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import firebase from './firebase';
+import SearchItem from './SearchItem';
+import './Search.css';
 
 export default class Search extends Component {
   constructor(props) {
@@ -13,7 +15,10 @@ export default class Search extends Component {
   }
 
   handleSearchValueChange = e => {
-    this.setState({ searchValue: e.target.value });
+    const searchValue = e.target.value;
+    this.setState(searchValue === ''
+      ? { searchValue, searchResults: [] }  // clear results when input cleared
+      : { searchValue });
   }
 
   search = e => {
@@ -46,9 +51,14 @@ export default class Search extends Component {
       });
   };
 
+  selectAll = () => {
+    if (!this.inputEl) { return; }
+    this.inputEl.select();
+  };
+
   queue = track => {
     const { user } = this.props;
-    firebase.database().ref('queue').push({
+    return firebase.database().ref('queue').push({
       uri: track.uri,
       name: track.name,
       artist: track.artists.map(a => a.name).join(', '),
@@ -56,41 +66,41 @@ export default class Search extends Component {
       queuer: user.displayName,
       queued: +new Date(),
     });
-  }
+  };
 
   render() {
     const { searching, searchError, searchValue, searchResults } = this.state;
     return (
-      <div>
-        <p>search yo</p>
+      <div className="Search">
         {searchError && (<p>uh oh: {`${searchError}`}</p>)}
-        <form onSubmit={this.search}>
-          <p>
-            <input
-              className="input"
-              disabled={searching}
-              onChange={this.handleSearchValueChange}
-              placeholder="search"
-              value={searchValue}
-            />
-          </p>
-          <p>
-            <button type="submit">search</button>
-          </p>
+        <form className="Search-form" onSubmit={this.search}>
+          <input
+            className="Search-input input"
+            disabled={searching}
+            onChange={this.handleSearchValueChange}
+            onFocus={this.selectAll}
+            placeholder="Search music to queue"
+            ref={el => this.inputEl = el}
+            value={searchValue}
+          />
+          <button
+            className="Search-button button"
+            type="submit"
+          >
+            search
+          </button>
         </form>
-        <div>
-          <ul>
-            {searchResults.map(track => (
-              <li key={track.id}>
-                <h4>
-                  {track.name}{' '}
-                  <small>({track.artists.map(artist => artist.name).join(', ')})</small>
-                  <button onClick={() => this.queue(track)}>queue</button>
-                </h4>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ol className="Search-results">
+          {searchResults.map(track => (
+            <li className="Search-result-wrap" key={track.id}>
+              <SearchItem
+                key={track.id}
+                onQueue={this.queue}
+                track={track}
+              />
+            </li>
+          ))}
+        </ol>
       </div>
     );
   }

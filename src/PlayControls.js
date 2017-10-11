@@ -89,12 +89,15 @@ export default class PlayControls extends Component {
   }
 
   render() {
-    const { muted, playing } = this.state;
+    const { muted, playing, queue } = this.state;
+    const inOrder = Object.keys(queue).map(k => queue[k]);  // ...ish...
+    const next = inOrder[inOrder.indexOf(playing) + 1];
     return (
       <div>
         {playing && (
           <CurrentlyPlaying
             muted={muted}
+            next={next}
             onToggleMute={this.toggleMute}
             track={playing}
           />

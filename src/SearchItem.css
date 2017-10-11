@@ -1,0 +1,53 @@
+.SearchItem {
+    align-items: stretch;
+    cursor: pointer;
+    display: flex;
+}
+
+.SearchItem-status-queuing {
+    background: #ddd;
+    color: #aaa;
+}
+.SearchItem-status-queued {
+}
+
+.SearchItem-info {
+    align-items: center;
+    border-bottom: 5px solid hsla(var(--theme-hue), var(--theme-sat), var(--theme-light), 0.333);
+    display: flex;
+    flex: 1;
+    padding: 0.6em 0.5em 0.4em;
+}
+.SearchItem-info.SearchItem-status-queued {
+    color: #fff;
+    background: var(--dark);
+    border-bottom-color: var(--dark);
+}
+
+.SearchItem h3 {
+    font: inherit;
+    margin: 0;
+}
+
+.SearchItem-queue-button:before {
+    content: "+ ";
+}
+
+.SearchItem-name {
+    font-weight: bold;
+}
+.SearchItem-status-queued .SearchItem-name {
+    color: var(--theme-color);
+}
+.SearchItem-status-queued .SearchItem-name:before {
+    color: #fff;
+    content: "✓ ";
+}
+
+
+.SearchItem-artist {
+    font-size: 0.8em;
+}
+.SearchItem-artist:before {
+    content: " – ";
+}
