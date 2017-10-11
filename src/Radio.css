@@ -24,12 +24,11 @@
 }
 
 .Radio-search {
-    flex: 0 0 50%;
+    flex: 1;
     overflow-y: auto;
 }
 
 .Radio-player {
-    flex: 0 0 50%;
     overflow-y: auto;
 }
 

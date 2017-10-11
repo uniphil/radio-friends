@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import CurrentlyPlaying from './CurrentlyPlaying';
 
 
 export default class PlayControls extends Component {
@@ -7,23 +8,24 @@ export default class PlayControls extends Component {
     super();
     this.state = {
       loadingQueue: true,
+      muted: false,
       playing: null,
       queue: [],
     };
     firebase.database().ref('queue').on('value', v => {
       const fbQueue = v.val();
       const queue = Object.keys(fbQueue).map(id => ({ id, ...fbQueue[id] }));
-      this.sync(queue);
       this.setState({
         loadingQueue: false,
         queue,
-      });
+      }, this.sync);
     });
   }
 
-  x = (uri, position) => {
+  setPlayback = (uri, position) => {
+    if (this.state.muted) { console.log('nope'); return; }
     const { device, access } = this.props;
-    const query = device ? `device_id=${device.id}` : ''
+    const query = device ? `device_id=${device.id}` : '';
     fetch(`https://api.spotify.com/v1/me/player/play?${query}`, {
       method: 'PUT',
       headers: {
@@ -38,7 +40,20 @@ export default class PlayControls extends Component {
       }));
   };
 
-  sync = queue => {
+  pausePlayback = () => {
+    const { device, access } = this.props;
+    const query = device ? `device_id=${device.id}` : '';
+    fetch(`https://api.spotify.com/v1/me/player/pause?${query}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${access}`,
+        'Content-Type': 'application/json',
+      },
+    });
+  };
+
+  sync = () => {
+    const { queue } = this.state;
     const now = +new Date();
     const { item, startedAt } = queue.reduce((last, item) => {
       const lastEnd = last.startedAt + last.item.duration;
@@ -54,44 +69,35 @@ export default class PlayControls extends Component {
       startedAt: -Infinity,
     });
     if (startedAt + item.duration > now) {
-      this.x(item.uri, now - startedAt);
+      this.setPlayback(item.uri, now - startedAt);
       this.setState({
         playing: item,
       });
-      console.log(item, startedAt + item.duration - now);
-      setTimeout(() => this.sync(this.state.queue), startedAt + item.duration - now + 16);
+      setTimeout(this.sync, startedAt + item.duration - now + 16);
     }
   };
 
+  toggleMute = () => {
+    const { muted } = this.state;
+    this.setState({ muted: !muted }, () => {
+      if (muted) {
+        this.sync();
+      } else {
+        this.pausePlayback();
+      }
+    });
+  }
+
   render() {
-    const { loadingQueue, queue, playing } = this.state;
+    const { muted, playing } = this.state;
     return (
       <div>
         {playing && (
-          <div>
-            <h3>Currently playing</h3>
-            <h4>
-              { playing.name } <small>({ playing.artist })</small>
-            </h4>
-            <p>Queued by {playing.queuer}</p>
-          </div>
-        )}
-        {loadingQueue ? (
-          <p>Loading queue...</p>
-        ) : (
-          <div>
-            <h3>Queue</h3>
-            <ol>
-              {queue.map(item => (
-                <li key={item.id}>
-                  <h4>
-                    {item.name} <small>({item.artist})</small>
-                  </h4>
-                  <p>Queued by {item.queuer}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
+          <CurrentlyPlaying
+            muted={muted}
+            onToggleMute={this.toggleMute}
+            track={playing}
+          />
         )}
       </div>
     );

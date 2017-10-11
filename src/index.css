@@ -31,6 +31,19 @@
     text-decoration: none;
 }
 
+.button-circle {
+    --size: 4em;
+    align-content: center;
+    border-bottom-width: 3px;
+    border-radius: calc(var(--size) / 2);
+    display: flex;
+    font: inherit;
+    justify-content: center;
+    padding: 0;
+    height: var(--size);
+    width: var(--size);
+}
+
 .button:hover {
     background: var(--bright);
     color: var(--darker);

@@ -4,7 +4,6 @@ import firebase from './firebase';
 import Hello from './Hello';
 import Radio from './Radio';
 
-import logo from './logo.svg';
 import './App.css';
 
 const SPOTIFY_ID = '6bf00353d7a34fb2b6c500fcc4969604';
