@@ -53,4 +53,10 @@
     margin: 0.5em 0 0;
     text-align: center;
 }
+.CurrentlyPlaying-next-title {
+    font-weight: bold;
+}
+.CurrentlyPlaying-next-queuer {
+    color: var(--darker);
+}
 
