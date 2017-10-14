@@ -30,18 +30,33 @@ export default class Devices extends Component {
     const { devices, loading, error } = this.state;
     return (
       <div className="Devices">
-        <h3>Devices</h3>
+        <h3>Playback device</h3>
+        <p>Radio friends plays music by controlling the playback of your Spotify account.</p>
         {error && <p>{error}</p>}
         {loading && <p>loading...</p>}
-        {devices.length === 0 ? (
-          <p>no active devices</p>
+        {devices.length === 0  && !loading && !error? (
+          <div>
+            <p>No devices on your Spotify account are active. Please open the Spotify app on the device you want to listen to Radio Friends.</p>
+            <p>You can also proceed without choosing a device, and we'll try to activate your last-used device automatically.</p>
+            <button
+              className="button"
+              onClick={this.getDevices}
+            >
+              Refresh
+            </button>
+          </div>
         ) : (
           <ul>
             {devices.map(d => (
               <li key={d.id}>
-                {d.id === device.id && '✓ '}
+                {device && d.id === device.id && '✓ '}
                 {d.name} <em>{d.type}</em>
-                <button onClick={() => onSelectDevice(d)}>use</button>
+                <button
+                  className="button"
+                  onClick={() => onSelectDevice(d)}
+                >
+                  use
+                </button>
               </li>
             ))}
           </ul>

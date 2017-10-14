@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Devices from './Devices';
 import Radio from './Radio';
+import './GetReady.css';
 
 
 export default class GetReady extends Component {
@@ -25,12 +26,21 @@ export default class GetReady extends Component {
 
     return (
       <div className="GetReady">
-        <Devices
-          access={access}
-          device={device}
-          onSelectDevice={this.setDevice}
-        />
-        <button onClick={() => this.setState({ ready: true })}>whatever</button>
+        <div className="GetReady-box GetReady-devices">
+          <Devices
+            access={access}
+            device={device}
+            onSelectDevice={this.setDevice}
+          />
+        </div>
+        <div className="GetReady-box GetReady-ready">
+          <button
+            className="button"
+            onClick={() => this.setState({ ready: true })}
+          >
+            Ready
+          </button>
+        </div>
       </div>
     );
   }
